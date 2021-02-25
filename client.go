@@ -2,17 +2,28 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 
-	"grpcclient/chat"
+	"grpc-client/chat"
 )
+
+var (
+	address = "localhost:50051"
+)
+
+func init() {
+	if ep, ok := os.LookupEnv("GRPC_ENDPOINT"); ok {
+		address = ep
+	}
+}
 
 func main() {
 
 	var conn *grpc.ClientConn
-	conn, err := grpc.Dial("35.232.108.243:9000", grpc.WithInsecure())
+	conn, err := grpc.Dial(address, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %s", err)
 	}
