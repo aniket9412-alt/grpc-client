@@ -19,5 +19,7 @@ RUN go build -o main .
 # Expose port 8080 to the outside world
 EXPOSE 8080
 
+# ENV GRPC_ENDPOINT="grpc_server:50051"
+
 # Command to run the executable
 CMD ["./main"]

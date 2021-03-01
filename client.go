@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -10,9 +11,7 @@ import (
 	"grpc-client/chat"
 )
 
-var (
-	address = "localhost:50051"
-)
+var address string
 
 func init() {
 	if ep, ok := os.LookupEnv("GRPC_ENDPOINT"); ok {
@@ -21,7 +20,7 @@ func init() {
 }
 
 func main() {
-
+	fmt.Println("address 12345 : ", address)
 	var conn *grpc.ClientConn
 	conn, err := grpc.Dial(address, grpc.WithInsecure())
 	if err != nil {
