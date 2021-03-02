@@ -14,9 +14,14 @@ spec:
         app: grpc-client-gke
     spec:
       containers:
-      - name: GRPC_ENDPOINT
-        value: grpc-server-gke:50051
+      - name: grpc-server-gke
+        image: gcr.io/grpc-client-305816/grpc:latest
+        ports:
+        - containerPort: 50051
       - name: grpc-client-gke
         image: gcr.io/grpc-client-305816/grpc-client-image:latest
+        env: 
+        - name: GRPC_ENDPOINT
+          value: grpc:50051
         ports:
         - containerPort: 8080
