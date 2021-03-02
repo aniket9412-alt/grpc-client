@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc-client-gke
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grpc-client-gke
+  template:
+    metadata:
+      labels:
+        app: grpc-client-gke
+    spec:
+      containers:
+      - name: grpc-client-gke
+        image: gcr.io/grpc-client-305816/grpc-client-image:latest
+        env: 
+        - name: GRPC_ENDPOINT
+          value: localhost:50051
+        ports:
+        - containerPort: 8080
