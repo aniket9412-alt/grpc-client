@@ -20,5 +20,5 @@ spec:
         - containerPort: 8080
         env: 
         - name: GRPC_ENDPOINT
-          value: localhost:50051
+          value: grpc-server-gke:50051
         
